@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.ITNewsMapper">
+    <resultMap type="com.itheima.po.ITNews" id="resultMap">
+      <id property="id" column="id"/>
+      <result property="content" column="content"/>
+      <result property="type" column="type"/> 
+      <result property="isTop" column="istop"/> 
+      <result property="title" column="title"/> 
+      <result property="okTime" column="oktime"/>      
+      <result property="isDelete" column="isdelete"/>  
+      <result property="author" column="author"/>  
+    </resultMap>
+	<select id="findAllNews" resultMap="resultMap">
+		select * from itnews where isDelete=0
+	</select>
+	
+	
+	<select id="findAllNewsByAuthor" resultMap="resultMap" parameterType="String" >
+		select * from itnews where isDelete=0 and author=#{author}
+		
+	</select>
+	
+	<select id="queryJunkNews" resultMap="resultMap">
+		select * from itnews where isDelete=1
+	</select>
+	
+	<select id="findNewsById" resultMap="resultMap">
+		select * from itnews where id=#{id} 
+	</select>
+	
+	<select id="findNewsByType" resultMap="resultMap">
+		select * from itnews where type=#{type} and isDelete=0
+	</select>
+	
+	<select id="findNewsByAuthor" parameterType="String"  resultType="java.lang.Integer">
+		select count(*) from itnews where author=#{author} and isDelete=0
+	</select>
+	
+	
+	<insert id="insertITNews" parameterType="com.itheima.po.ITNews"  >
+	    insert into itnews (content,type,istop,title,oktime,author)
+	    values (#{content}, #{type}, #{isTop}, #{title},#{okTime},#{author})
+  	</insert> 
+	
+	<!-- <delete id="deleteNewsById" parameterType="java.lang.Integer">
+		update itnews set isdelete=1 where id=#{id}
+	</delete> -->
+	<update id="deleteNewsById" parameterType="java.lang.Integer">
+		update itnews set isDelete=1  where id=#{id};
+	</update>
+	<delete  id="deleteNews" parameterType="java.lang.Integer">
+		delete from itnews where id=#{id};
+	</delete>
+	
+	<update id="updateITNews" parameterType="com.itheima.po.ITNews">
+		update itnews set content=#{content},type=#{type},istop=#{isTop},title=#{title},author=#{author} where id=#{id};
+	</update>
+	
+	<update id="recoveryITNews" parameterType="java.lang.Integer">
+		update itnews set isDelete=0 where id=#{id};
+	</update>
+	
+	<!-- <select id="findUserByName" parameterType="String"
+		resultType="com.itheima.po.User">
+		select * from users where username=#{username}
+	</select>
+	
+	
+	<select id="findUserById" parameterType="java.lang.Integer"
+		resultType="com.itheima.po.User">
+		select * from users where id=#{id,jdbcType=INTEGER}
+	</select>
+	
+	
+	<insert id="insertUser" parameterType="com.itheima.po.User"  >
+	    insert into users (username,password,email,phone)
+	    values (#{username}, #{password}, 
+	      #{email}, #{phone})
+  	</insert> -->
+  	
+  	
+</mapper>

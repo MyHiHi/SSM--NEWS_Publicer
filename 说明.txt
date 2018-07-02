@@ -1,0 +1,4 @@
+1.主页:http://localhost:8080/chapter07/
+2.mysql库名:ssm
+3.除了微信，QQ分享外其他都实现了.
+4.用户:root密码123
