@@ -37,7 +37,7 @@ public class LoginController {
 			model.addAttribute("isLogin",true);
 			session.setAttribute("user", user);
 			
-			return "index.jsp";
+			return "Hello.jsp";
 		}
 		
 	}	
