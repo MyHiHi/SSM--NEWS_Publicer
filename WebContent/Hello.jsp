@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src='js/box2d.js'></script>
 
 	<script src='js/Main.js'></script>
-    <meta http-equiv="refresh" content='15; url=login.jsp'>
+    <meta http-equiv="refresh" content='5; url=index.jsp'>
   <script type="text/javascript">
      var time =5;
      function  aaa()
